@@ -1,0 +1,35 @@
+Resources:
+  EmployeeTable:
+    Type: AWS::DynamoDB::Table
+    Properties:
+      TableName: ${self:custom.tableName}
+      AttributeDefinitions:
+        - AttributeName: email
+          AttributeType: S
+        - AttributeName: company
+          AttributeType: S
+      KeySchema:
+        - AttributeName: email
+          KeyType: HASH
+        - AttributeName: company
+          KeyType: HASH
+      ProvisionedThroughput:
+        ReadCapacityUnits: ${self:custom.tableThroughput}
+        WriteCapacityUnits: ${self:custom.tableThroughput}
+  DynamoDBIamPolicy:
+    Type: AWS::IAM::Policy
+    Properties:
+      PolicyName: lambda-dynamodb
+      PolicyDocument:
+        Version: '2012-10-17'
+        Statement:
+          - Effect: Allow
+            Action:
+              - dynamodb:PutItem
+              - dynamodb:GetItem
+              - dynamodb:Query
+              - dynamodb:Scan
+            Resource:
+              - arn:aws:dynamodb:*:*:table/${self:custom.tableName}
+      Roles:
+        - Ref: IamRoleLambdaExecution

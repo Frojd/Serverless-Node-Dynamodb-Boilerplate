@@ -1,0 +1,55 @@
+service: exampleapi
+
+provider:
+  name: aws
+  stage: dev
+  runtime: nodejs8.10
+  region: eu-west-1
+  memorySize: 512
+  environment:
+    TABLE_NAME: ${self:custom.tableName}
+  apiKeys:
+    - ${opt:stage}-ExampleApi
+
+plugins:
+  - serverless-offline
+
+custom:
+  stage: ${opt:stage, self:provider.stage}
+  tableName: ${self:custom.stage}-Employee
+  tableThroughputs:
+    prod: 1
+    default: 1
+  tableThroughput: ${self:custom.tableThroughputs.${self:custom.stage}, self:custom.tableThroughputs.default}
+
+functions:
+  createLocalDb:
+    handler: handlers.createLocalDb
+    events:
+      - http:
+          path: create-local-db
+          method: get
+          private: true
+	getAppVersion:
+    handler: handlers.getAppVersion
+    events:
+      - http:
+          path: version
+          method: get
+          private: true
+  getEmployee:
+    handler: handlers.getEmployee
+    events:
+      - http:
+          path: employee
+          method: get
+	createEmployee:
+    handler: handlers.createEmployee
+    events:
+      - http:
+          path: feedback
+          method: post
+          cors: true
+
+resources:
+  - ${file(resources/dynamodb-table.yml)}

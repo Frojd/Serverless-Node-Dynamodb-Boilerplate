@@ -1,0 +1,12 @@
+/node_modules
+npm-debug.log
+.serverless
+.env
+node_modules
+
+# Temporary folder
+tmp/
+temp/
+
+# Circleci
+.circlerc
