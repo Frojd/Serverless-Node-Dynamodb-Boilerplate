@@ -5,10 +5,10 @@ This is Node.js based serverless api boilerplate with built in dynamodb support
 
 ## Features
 
-- Serverless
+- [Serverless](https://serverless.com/)
 - Node.js
 - Dynamodb support
-- Offline support using [serverless-offline](https://www.npmjs.com/package/serverless-offline) and docker
+- Offline support (using [serverless-offline](https://www.npmjs.com/package/serverless-offline) and docker)
 - Example endpoints
 - Circleci integration
 - Secret management
