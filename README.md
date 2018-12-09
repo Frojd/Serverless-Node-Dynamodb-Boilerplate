@@ -1,6 +1,6 @@
 # Serverless-Node-Dynamodb-Boilerplate
 
-This is node.js api boilerplate for serverless with dynamodb.
+This is Node.js based serverless api boilerplate with built in dynamodb support
 
 
 ## Features
