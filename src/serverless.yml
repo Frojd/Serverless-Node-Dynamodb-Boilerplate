@@ -29,7 +29,6 @@ functions:
       - http:
           path: create-local-db
           method: get
-          private: true
   getAppVersion:
     handler: handlers.getAppVersion
     events:
