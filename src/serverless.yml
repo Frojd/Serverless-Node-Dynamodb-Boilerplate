@@ -30,7 +30,7 @@ functions:
           path: create-local-db
           method: get
           private: true
-	getAppVersion:
+  getAppVersion:
     handler: handlers.getAppVersion
     events:
       - http:
@@ -43,7 +43,7 @@ functions:
       - http:
           path: employee
           method: get
-	createEmployee:
+  createEmployee:
     handler: handlers.createEmployee
     events:
       - http:
