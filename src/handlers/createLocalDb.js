@@ -13,7 +13,7 @@ const createLocalDb = async (event, context) => {
             },
             {
                 AttributeName: "company",
-                KeyType: "HASH"
+                KeyType: "RANGE"
             }
         ],
         AttributeDefinitions: [

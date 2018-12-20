@@ -12,7 +12,7 @@ Resources:
         - AttributeName: email
           KeyType: HASH
         - AttributeName: company
-          KeyType: HASH
+          KeyType: RANGE
       ProvisionedThroughput:
         ReadCapacityUnits: ${self:custom.tableThroughput}
         WriteCapacityUnits: ${self:custom.tableThroughput}
