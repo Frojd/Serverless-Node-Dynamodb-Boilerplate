@@ -40,13 +40,13 @@ functions:
     handler: handlers.getEmployee
     events:
       - http:
-          path: employee
+          path: employees
           method: get
   createEmployee:
     handler: handlers.createEmployee
     events:
       - http:
-          path: feedback
+          path: employees
           method: post
           cors: true
 
