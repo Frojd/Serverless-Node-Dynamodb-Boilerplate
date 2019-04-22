@@ -1,10 +1,10 @@
 const { createEmployee, getEmployee } = require('./employee');
-const { createDB } = require('./createDB');
+const { createLocalDb } = require('./createLocalDb');
 const { getAppVersion } = require('./getAppVersion');
 
 module.exports = {
     createEmployee,
     getEmployee,
-    createDB,
+    createLocalDb,
     getAppVersion,
 };

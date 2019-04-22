@@ -13,7 +13,7 @@ const createLocalDb = async (event, context) => {
             },
             {
                 AttributeName: "company",
-                KeyType: "HASH"
+                KeyType: "RANGE"
             }
         ],
         AttributeDefinitions: [
@@ -38,7 +38,13 @@ const createLocalDb = async (event, context) => {
             })
         };
     } catch (err) {
-        return buildErrorResponse(err);
+        return {
+            statusCode: err.statusCode,
+            body: JSON.stringify({
+                message: err.message,
+                code: err.code
+            })
+        };
     }
 };
 

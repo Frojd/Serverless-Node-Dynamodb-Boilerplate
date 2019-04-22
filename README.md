@@ -34,7 +34,7 @@ This is Node.js based serverless api boilerplate with built in dynamodb support
 
 ## Handling secrets
 
-We us a external file to store all secrets
+Secrets are stored in a encrypted external file, where $KEY is your encryption key.
 
 - Encrypt `openssl aes-256-cbc -e -in .circlerc -out .circlerc-crypt -k $KEY`
 - Decrypt `openssl aes-256-cbc -d -in .circlerc-crypt -out .circlerc -k $KEY`

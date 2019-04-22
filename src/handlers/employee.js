@@ -1,9 +1,7 @@
-"use strict";
-
-const AWS = require("aws-sdk");
 const uuidv4 = require("uuid/v4");
-const { getSettings } = require("../settings.js");
-const { withOfflineSupport } = require("../decorators.js");
+const { getSettings } = require("../settings");
+const { withOfflineSupport } = require("../decorators");
+const dynamoDbHelpers = require("../dynamoDbHelpers");
 
 const CORS_HEADERS = {
     "Access-Control-Allow-Origin": "*",
@@ -16,6 +14,7 @@ const createEmployee = async (event, context) => {
 
     if (!email || !company) {
         return buildErrorResponse({
+            statusCode: 400,
             message: "Missing either email or company",
             code: "MissingArguments"
         });
@@ -29,14 +28,21 @@ const createEmployee = async (event, context) => {
         created: new Date().getTime()
     };
     try {
-        await putDoc({ TableName: getSettings().TABLE_NAME }, model).promise();
+        await dynamoDbHelpers.putDoc(
+            { TableName: getSettings().TABLE_NAME },
+            model,
+        ).promise();
+
         return {
             statusCode: 201,
             headers: CORS_HEADERS,
             body: JSON.stringify(model)
         };
     } catch (err) {
-        return buildErrorResponse(err);
+        return buildErrorResponse({
+            statusCode: 500,
+            ...err,
+        });
     }
 };
 
@@ -51,20 +57,13 @@ const buildErrorResponse = err => {
     };
 };
 
-const putDoc = (config, item) => {
-    let docClient = new AWS.DynamoDB.DocumentClient();
-    const model = { ...config, Item: item };
-    return docClient.put(model);
-};
-
 const getEmployee = async (event, context) => {
-    const docClient = new AWS.DynamoDB.DocumentClient();
     let params = {
         TableName: getSettings().TABLE_NAME
     };
 
     try {
-        const data = await docClient.scan(params).promise();
+        const data = await dynamoDbHelpers.scan(params).promise();
         let items = data.Items;
 
         return {
@@ -72,7 +71,10 @@ const getEmployee = async (event, context) => {
             body: JSON.stringify(items)
         };
     } catch (err) {
-        return buildErrorResponse(err);
+        return buildErrorResponse({
+            statusCode: 500,
+            ...err,
+        })
     }
 };
 
