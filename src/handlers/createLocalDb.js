@@ -31,10 +31,8 @@ const createLocalDb = async (event, context) => {
         return {
             statusCode: 200,
             body: JSON.stringify({
-                message: [
-                    "Created table. Table description JSON:",
-                    JSON.stringify(data, null, 2)
-                ]
+                message: "Created table. Table description JSON:",
+                data,
             })
         };
     } catch (err) {
