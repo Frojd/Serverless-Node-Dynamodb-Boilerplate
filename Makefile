@@ -5,8 +5,8 @@ setup:
 	cd install -g serverless
 	cd src && npm install
 
-local:
-	docker-compose up
+start:
+	docker-compose up -d
 	cd src && serverless offline start --stage dev
 
 fixcode:
