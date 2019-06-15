@@ -1,6 +1,6 @@
 const AWS = require("aws-sdk");
-const { withOfflineSupport, requireOffline } = require("../decorators.js");
-const { getSettings } = require("../settings.js");
+const { withOfflineSupport, requireOffline } = require("../decorators");
+const { getSettings } = require("../settings");
 
 const createLocalDb = async (event, context) => {
     var dynamodb = new AWS.DynamoDB();
