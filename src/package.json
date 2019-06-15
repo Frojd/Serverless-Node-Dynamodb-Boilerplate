@@ -5,7 +5,8 @@
   "scripts": {
     "test": "jest",
     "precommit": "lint-staged",
-    "fixcode": "prettier **.js --config .prettierrc --write"
+    "fixcode": "prettier **.js --config .prettierrc --write",
+    "start": "serverless offline start --stage dev"
   },
   "author": "Martin Sandström",
   "license": "ISC",
