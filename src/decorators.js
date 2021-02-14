@@ -2,7 +2,7 @@ const AWS = require("aws-sdk");
 
 const withOfflineSupport = handler => {
     return async (event, ...params) => {
-        if (event.isOffline) {
+        if (process.env.IS_OFFLINE) {
             AWS.config.update({
                 endpoint: "http://localhost:7955",
                 accessKeyId: "AKID",
@@ -18,7 +18,7 @@ const withOfflineSupport = handler => {
 
 const requireOffline = handler => {
     return async (event, ...params) => {
-        if (!event.isOffline) {
+        if (!process.env.IS_OFFLINE) {
             return { statusCode: 401 };
         }
 
