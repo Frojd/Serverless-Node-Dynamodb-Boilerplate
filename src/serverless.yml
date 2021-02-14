@@ -8,11 +8,15 @@ provider:
   memorySize: 256
   environment:
     TABLE_NAME: ${self:custom.tableName}
-  apiKeys:
-    - ${opt:stage}-ExampleApi
+  apiGateway:
+    shouldStartNameWithService: true
+    apiKeys:
+      - ${opt:stage}-ExampleApi
 
 plugins:
   - serverless-offline
+
+useDotenv: true
 
 custom:
   stage: ${opt:stage, self:provider.stage}
