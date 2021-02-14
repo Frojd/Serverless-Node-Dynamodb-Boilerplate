@@ -16,7 +16,7 @@ This is Node.js based serverless api boilerplate with built in dynamodb support
 
 ## Requirements
 
-- Node 8.10.0
+- Node 12
 - Serverless
 
 

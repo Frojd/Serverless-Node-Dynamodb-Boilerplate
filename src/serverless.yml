@@ -3,7 +3,7 @@ service: exampleapi
 provider:
   name: aws
   stage: dev
-  runtime: nodejs8.10
+  runtime: nodejs12.x
   region: eu-west-1
   memorySize: 512
   environment:
