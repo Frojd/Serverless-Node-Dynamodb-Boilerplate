@@ -3,16 +3,20 @@ service: exampleapi
 provider:
   name: aws
   stage: dev
-  runtime: nodejs8.10
+  runtime: nodejs12.x
   region: eu-west-1
-  memorySize: 512
+  memorySize: 256
   environment:
     TABLE_NAME: ${self:custom.tableName}
-  apiKeys:
-    - ${opt:stage}-ExampleApi
+  apiGateway:
+    shouldStartNameWithService: true
+    apiKeys:
+      - ${opt:stage}-ExampleApi
 
 plugins:
   - serverless-offline
+
+useDotenv: true
 
 custom:
   stage: ${opt:stage, self:provider.stage}

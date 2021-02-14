@@ -9,7 +9,7 @@ const CORS_HEADERS = {
 };
 
 
-const createEmployee = async (event, context) => {
+const createEmployee = async (event, _context) => {
     const { email, company, ...extraValues } = JSON.parse(event.body);
 
     if (!email || !company) {
@@ -57,7 +57,7 @@ const buildErrorResponse = err => {
     };
 };
 
-const getEmployee = async (event, context) => {
+const getEmployee = async (_event, _context) => {
     let params = {
         TableName: getSettings().TABLE_NAME
     };

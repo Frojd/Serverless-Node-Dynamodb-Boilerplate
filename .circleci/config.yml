@@ -32,7 +32,7 @@ jobs:
   checkout_code:
     <<: *defaults
     docker:
-      - image: circleci/node:8.10.0
+      - image: circleci/node:12
     steps:
       - checkout
       - save_cache:
@@ -43,7 +43,7 @@ jobs:
   nodejs:
     <<: *defaults
     docker:
-      - image: circleci/node:latest
+      - image: circleci/node:12
     steps:
       - *restore_repo
       - restore_cache:
@@ -57,7 +57,7 @@ jobs:
   deploy:
     <<: *defaults
     docker:
-      - image: circleci/node:8.10.0
+      - image: circleci/node:12
     steps:
       - *restore_repo
       - restore_cache:

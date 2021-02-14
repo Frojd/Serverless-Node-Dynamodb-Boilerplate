@@ -5,20 +5,24 @@
   "scripts": {
     "test": "jest",
     "precommit": "lint-staged",
-    "fixcode": "prettier **.js --config .prettierrc --write"
+    "fixcode": "prettier **.js --config .prettierrc --write",
+    "start": "serverless offline start --stage dev"
   },
   "author": "Martin Sandström",
   "license": "ISC",
   "dependencies": {
-    "ramda": "^0.26.0",
-    "uuid": "^3.3.2"
+    "ramda": "^0.27.1",
+    "uuid": "^8.3.2"
   },
   "devDependencies": {
-    "aws-sdk": "^2.352.0",
-    "lint-staged": "^8.0.4",
-    "prettier": "^1.15.1",
-    "serverless-offline": "^3.33.0",
-    "jest": "^24.7.1"
+    "aws-sdk": "^2.839.0",
+    "jest": "^26.6.3",
+    "lint-staged": "^10.5.4",
+    "prettier": "^2.2.1",
+    "serverless-offline": "^6.8.0"
   },
-  "description": ""
+  "description": "",
+  "engines": {
+    "node": ">=12 <13"
+  }
 }

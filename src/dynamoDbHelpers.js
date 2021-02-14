@@ -11,3 +11,8 @@ const scan = (config, item) => {
     const model = { ...config, Item: item };
     return docClient.put(model);
 };
+
+module.exports = {
+    putDoc,
+    scan,
+}
